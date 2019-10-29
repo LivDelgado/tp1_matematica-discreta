@@ -19,17 +19,17 @@ int** quadradoMagicoImpar(int n) {
     if (n < 3 || n % 2 == 0)
         return NULL;
 
-    int value = 0;
-    int squareSize = n * n;
-    int c = n / 2, r = 0,i;
+    int valor = 0;
+    int tamanhoQuadrado = n*n;
+    int c = n / 2, r = 0, i;
 
-    int** result = (int**)malloc(n*sizeof(int*));
+    int** quadradoMagico = (int**)malloc(n*sizeof(int*));
 
-    for(i=0;i<n;i++)
-        result[i] = (int*)malloc(n*sizeof(int));
+    for(i = 0; i < n; i++)
+        quadradoMagico[i] = (int*)malloc(n*sizeof(int));
 
-    while (++value <= squareSize) {
-        result[r][c] = value;
+    while (++valor <= tamanhoQuadrado) {
+        quadradoMagico[r][c] = valor;
         if (r == 0) {
             if (c == n - 1) {
                 r++;
@@ -40,57 +40,57 @@ int** quadradoMagicoImpar(int n) {
         } else if (c == n - 1) {
             r--;
             c = 0;
-        } else if (result[r - 1][c + 1] == 0) {
+        } else if (quadradoMagico[r - 1][c + 1] == 0) {
             r--;
             c++;
         } else {
             r++;
         }
     }
-    return result;
+    return quadradoMagico;
 }
 
 int** quadradoMagicoPar(int n) {
     if (n < 6 || (n - 2) % 4 != 0)
         return NULL;
 
-    int size = n * n;
-    int halfN = n / 2;
-    int subGridSize = size / 4, i;
+    int tamanhoQuadrado = n * n;
+    int metadeTamanho = n / 2;
+    int subGridTamanhoQuadrado = tamanhoQuadrado / 4, i;
 
-    int** subGrid = quadradoMagicoImpar(halfN);
-    int gridFactors[] = {0, 2, 3, 1};
-    int** result = (int**)malloc(n*sizeof(int*));
+    int** subGrid = quadradoMagicoImpar(metadeTamanho);
+    int fatoresGrid[] = {0, 2, 3, 1};
+    int** quadradoMagico = (int**)malloc(n*sizeof(int*));
 
-    for(i=0;i<n;i++)
-        result[i] = (int*)malloc(n*sizeof(int));
+    for(i = 0; i < n; i++)
+        quadradoMagico[i] = (int*)malloc(n*sizeof(int));
 
     for (int r = 0; r < n; r++) {
         for (int c = 0; c < n; c++) {
-            int grid = (r / halfN) * 2 + (c / halfN);
-            result[r][c] = subGrid[r % halfN][c % halfN];
-            result[r][c] += gridFactors[grid] * subGridSize;
+            int grid = (r / metadeTamanho) * 2 + (c / metadeTamanho);
+            quadradoMagico[r][c] = subGrid[r % metadeTamanho][c % metadeTamanho];
+            quadradoMagico[r][c] += fatoresGrid[grid] * subGridTamanhoQuadrado;
         }
     }
 
-    int nColsLeft = halfN / 2;
-    int nColsRight = nColsLeft - 1;
+    int numeroColunasEsquerda = metadeTamanho / 2;
+    int numeroColunasDireita = numeroColunasEsquerda - 1;
 
-    for (int r = 0; r < halfN; r++)
+    for (int r = 0; r < metadeTamanho; r++)
         for (int c = 0; c < n; c++) {
-            if (c < nColsLeft || c >= n - nColsRight
-                    || (c == nColsLeft && r == nColsLeft)) {
+            if (c < numeroColunasEsquerda || c >= n - numeroColunasDireita
+                    || (c == numeroColunasEsquerda && r == numeroColunasEsquerda)) {
 
-                if (c == 0 && r == nColsLeft)
+                if (c == 0 && r == numeroColunasEsquerda)
                     continue;
 
-                int tmp = result[r][c];
-                result[r][c] = result[r + halfN][c];
-                result[r + halfN][c] = tmp;
+                int tmp = quadradoMagico[r][c];
+                quadradoMagico[r][c] = quadradoMagico[r + metadeTamanho][c];
+                quadradoMagico[r + metadeTamanho][c] = tmp;
             }
         }
 
-    return result;
+    return quadradoMagico;
 }
 
 int** quadradoMagicoDuplamentePar(int n)
