@@ -6,10 +6,10 @@ Executar o terminal na pasta onde se encontra o arquivo e digitar o seguinte com
 
 Será gerado um arquivo executável, que deve então ser iniciado a fim de utilizar o programa. 
 Comando a ser executado no terminal:
-    >> somamax
+    >> ./somamax
 
 
 O mesmo deve ser feito com o qmagico.c, porém com o comando
     >> gcc -o qmagico qmagico.c
 E para executar
-    >> qmagico
+    >> ./qmagico

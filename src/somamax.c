@@ -1,4 +1,5 @@
 #include<limits.h> 
+#include<locale.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -34,7 +35,7 @@ int main (){
     // entrada de dados
     int numeroElementos = 0;
     scanf("%d", &numeroElementos);
-    int vetor[numeroElementos];
+    int* vetor = (int*)malloc(numeroElementos*sizeof(int));
 	
     for(i = 0; i < numeroElementos; i++)
         scanf("%d", &(vetor[i]));
@@ -45,6 +46,8 @@ int main (){
     
     free(vetor);
 
+    setlocale(LC_ALL, "");  
+
     // saída
 	printf("Soma: %d\n", somaMaxima);
     int primeiro = 0, ultimo = 0;
@@ -52,7 +55,7 @@ int main (){
         primeiro = indiceInicial+1;
         ultimo = indiceFinal+1;
     }
-	printf("%cndices: %d a %d\n", 214, primeiro, ultimo);
+	printf("Índices: %d a %d\n", primeiro, ultimo);
     
 	return 0; 
 } 
