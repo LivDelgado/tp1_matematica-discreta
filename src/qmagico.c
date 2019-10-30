@@ -6,7 +6,9 @@
 void imprimeQuadradoMagico(int** q, int n){
     int i, j;
     printf("n = %d, Soma = %d\n",  n, (n * (n*n + 1)/2)); 
+    
     for (i = 0; i < n; i++){ 
+        
         for (j = 0; j < n; j++) {
             printf("%3d ", q[i][j]); 
         }
@@ -29,24 +31,32 @@ int** quadradoMagicoImpar(int n) {
         quadradoMagico[i] = (int*)malloc(n*sizeof(int));
 
     while (++valor <= tamanhoQuadrado) {
+        
         quadradoMagico[r][c] = valor;
+        
         if (r == 0) {
+        
             if (c == n - 1) {
                 r++;
+                
             } else {
                 r = n - 1;
                 c++;
             }
+        
         } else if (c == n - 1) {
             r--;
             c = 0;
+        
         } else if (quadradoMagico[r - 1][c + 1] == 0) {
             r--;
             c++;
+        
         } else {
             r++;
         }
     }
+    
     return quadradoMagico;
 }
 
@@ -65,8 +75,11 @@ int** quadradoMagicoPar(int n) {
     for(i = 0; i < n; i++)
         quadradoMagico[i] = (int*)malloc(n*sizeof(int));
 
-    for (int r = 0; r < n; r++) {
-        for (int c = 0; c < n; c++) {
+    int c, r;
+    for (r = 0; r < n; r++) {
+        
+        for (c = 0; c < n; c++) {
+            
             int grid = (r / metadeTamanho) * 2 + (c / metadeTamanho);
             quadradoMagico[r][c] = subGrid[r % metadeTamanho][c % metadeTamanho];
             quadradoMagico[r][c] += fatoresGrid[grid] * subGridTamanhoQuadrado;
@@ -76,8 +89,10 @@ int** quadradoMagicoPar(int n) {
     int numeroColunasEsquerda = metadeTamanho / 2;
     int numeroColunasDireita = numeroColunasEsquerda - 1;
 
-    for (int r = 0; r < metadeTamanho; r++)
-        for (int c = 0; c < n; c++) {
+    for (r = 0; r < metadeTamanho; r++)
+        
+        for (c = 0; c < n; c++) {
+            
             if (c < numeroColunasEsquerda || c >= n - numeroColunasDireita
                     || (c == numeroColunasEsquerda && r == numeroColunasEsquerda)) {
 
@@ -99,7 +114,7 @@ int** quadradoMagicoDuplamentePar(int n)
   
     int** quadradoMagico = (int**)malloc(n*sizeof(int*));
 
-    for(i=0;i<n;i++)
+    for(i = 0; i < n; i++)
         quadradoMagico[i] = (int*)malloc(n*sizeof(int));
 
     for (i = 0; i < n; i++) 
@@ -130,10 +145,18 @@ int** quadradoMagicoDuplamentePar(int n)
 } 
   
 void iniciaMontagemQuadradosMagicos(){
-    imprimeQuadradoMagico(quadradoMagicoImpar(3), 3);
-    imprimeQuadradoMagico(quadradoMagicoDuplamentePar(4),4);
-    imprimeQuadradoMagico(quadradoMagicoImpar(5),5);
-    imprimeQuadradoMagico(quadradoMagicoPar(6),6);
+    int** q3 = quadradoMagicoImpar(3);
+    int** q4 = quadradoMagicoDuplamentePar(4);
+    int** q5 = quadradoMagicoImpar(5);
+    int** q6 = quadradoMagicoPar(6);
+    imprimeQuadradoMagico(q3, 3);
+    imprimeQuadradoMagico(q4, 4);
+    imprimeQuadradoMagico(q5, 5);
+    imprimeQuadradoMagico(q6, 6);
+    free(q3);
+    free(q4);
+    free(q5);
+    free(q6);
 }
 
 int main (){ 

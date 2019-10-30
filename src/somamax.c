@@ -42,11 +42,18 @@ int main (){
 
 	// execução do algoritmo de kadane
     kadane(vetor, numeroElementos, &indiceInicial, &indiceFinal, &somaMaxima);
+    
+    free(vetor);
 
     // saída
 	printf("Soma: %d\n", somaMaxima);
-	printf("%cndices: %d a %d\n", 214, indiceInicial+1, indiceFinal+1);
-
+    int primeiro = 0, ultimo = 0;
+    if(somaMaxima != 0){
+        primeiro = indiceInicial+1;
+        ultimo = indiceFinal+1;
+    }
+	printf("%cndices: %d a %d\n", 214, primeiro, ultimo);
+    
 	return 0; 
 } 
 
