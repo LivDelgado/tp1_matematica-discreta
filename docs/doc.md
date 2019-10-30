@@ -71,8 +71,5 @@ São seguidas 3 condições:
 2. Se a posição calculada já estiver ocupada, será subtraído 2 do número da coluna e somado 1 ao número da linha.
 3. Se o número da linha calculada for -1 e o da coluna for n, a nova posição seria (0, n-2).
 
-##### Quadrado Mágico Par
-##### Quadrado Mágico Duplamente Par
-
 #### Análise de Complexidade
 Como o algoritmo trabalha com um vetor de 2 dimensões, que sempre será percorrido e preenchido, seu custo de tempo e de espaço pode ser representado por O(n^2).
